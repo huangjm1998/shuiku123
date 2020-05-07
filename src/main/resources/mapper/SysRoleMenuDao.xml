@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zz.dao.SysRoleMenuDao">
+    <!--    <insert id="insertObjects" >-->
+    <!--        insert  into role_menus(roleId,jurisdictionID) values-->
+    <!--        <foreach collection="jurisdictionIDs" separator=","-->
+    <!--        item="jurisdictionIDs">-->
+    <!--        (#{roleId},#{jurisdictionIDs})-->
+    <!--    </foreach>-->
+    <!--    </insert>-->
+
+
+    <!-- 基于角色id查询菜单id -->
+    <select id="findMenuIdsByRoleId" resultType="int">
+        select jurisdictionId
+        from role_menus
+        where roleId=#{id}
+    </select>
+</mapper>

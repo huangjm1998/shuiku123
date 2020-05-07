@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zz.dao.UserDao">
+    <!--  添加用户自身信息  -->
+    <insert id="saveUser" parameterType="com.zz.pojo.User" useGeneratedKeys="true" keyProperty="id">
+        insert into SYQ_user(username,password,telephone,Province,City,County,userstatus,dengluming)
+        values
+        (#{username},#{password},#{telephone},#{Province},#{City},#{County},#{userstatus},#{dengluming})
+    </insert>
+
+
+    <!--    select * from(
+       select *, ROW_NUMBER() OVER(order by t1.photo_keyName desc) as Row from
+         (select table1.*,table2.car_id,table3.photo_keyName from table1 inner join table2 on table1.DS_Lack=1 and table1.DS_CarNum = table2.car_no left join table3 on table2.car_id=table3.type_id)as t1
+         ) as t2
+    where t2.Row between 1 and 10
+    -->
+    <select id="findUsers" resultType="map">
+        select * from(
+        select *, ROW_NUMBER() OVER(Order by id) as Row from
+        (
+        select s.*,r.name from SYQ_user s
+        left join user_role ur
+        on s.id = ur.userId
+        left join SYQ_role r
+        on r.id = ur.roleId
+        <where>
+            <if test="Province !=null and Province!=''">
+                Province=#{Province}
+            </if>
+            <if test="City !=null and City!=''">
+                and City=#{City}
+            </if>
+            <if test="County !=null and County!=''">
+                and County =#{County}
+            </if>
+            <if test="name !=null and name!=''">
+                and name =#{name}
+            </if>
+            <if test="dengluming !=null and dengluming!=''">
+                and dengluming like '%' + #{dengluming}+ '%'
+            </if>
+        </where>
+        ) as t
+        )t2
+        where t2.Row BETWEEN (${pageCurrent}-1)* ${pageSize}+1 and ${pageCurrent} * ${pageSize}
+    </select>
+
+    <!--    查询用户数量-->
+    <select id="findUserSize" resultType="int">
+        select count(*) from(
+        select *, ROW_NUMBER() OVER(Order by id) as Row from
+        (
+        select s.*,r.name from SYQ_user s
+        left join user_role ur
+        on s.id = ur.userId
+        left join SYQ_role r
+        on r.id = ur.roleId
+        <where>
+            <if test="Province !=null and Province!=''">
+                Province=#{Province}
+            </if>
+            <if test="City !=null and City!=''">
+                and City=#{City}
+            </if>
+            <if test="County !=null and County!=''">
+                and County =#{County}
+            </if>
+            <if test="name !=null and name!=''">
+                and name =#{name}
+            </if>
+            <if test="dengluming and dengluming!=''">
+                and dengluming like '%' + #{dengluming}+ '%'
+            </if>
+        </where>
+        ) as t
+        )t2
+    </select>
+
+    <!--    禁用和启用用户-->
+    <update id="vaildUserById">
+        update SYQ_user set userstatus=#{userstatus} where id=#{id}
+    </update>
+    <select id="findtelephone" resultType="int">
+        select count(*) from SYQ_user where telephone=#{telephone}
+    </select>
+
+</mapper>

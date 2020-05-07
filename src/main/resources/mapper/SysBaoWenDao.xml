@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zz.dao.SysBaoWenDao">
+    <!--  查询心跳总条数 -->
+    <!--    <select id="selectcount" resultType="int">-->
+    <!--        select count(*) from (select ROW_NUMBER() OVER(Order by id) as RowId,* from-->
+    <!--        (select B.RSNM,B.CITY,B.CNTY,A.* from SYQ_heartbeat A LEFT JOIN SYQ_RSV_BSIN B on A.TENstation=B.TENstation) M ) as b-->
+    <!--         <where>-->
+    <!--        <if test="CNTY !=''">-->
+    <!--        M.CNTY = #{CNTY}-->
+    <!--            </if>-->
+    <!--        <if test="TENstation !=''">-->
+    <!--          and  M.TENstation = #{TENstation}-->
+    <!--            </if>-->
+    <!--        <if test="RSNM !=''">-->
+    <!--             and M.RSNM like '%' + #{RSNM}+ '%'-->
+    <!--        </if>-->
+    <!--        </where>-->
+
+    <!--    </select>-->
+
+
+    <!--    <select id="selectHeartbeat" resultType="map">-->
+    <!--        select * from (select ROW_NUMBER() OVER(Order by id) as RowId,* from-->
+    <!--        (select B.RSNM,B.CITY,B.CNTY,A.* from SYQ_heartbeat A LEFT JOIN SYQ_RSV_BSIN B on A.TENstation=B.TENstation) M ) as b where b.RowId BETWEEN (${begin}-1)* ${row}+1 and  ${begin} * ${row}-->
+    <!--        <where>-->
+    <!--        <if test="CNTY !=''">-->
+    <!--        M.CNTY = #{CNTY}-->
+    <!--        </if>-->
+    <!--        <if test="TENstation !=''">-->
+    <!--          and  M.TENstation = '${TENstation}-->
+    <!--        </if>-->
+    <!--        <if test="RSNM !=''">-->
+    <!--          and  M.RSNM like '%' + #{RSNM}+ '%'-->
+    <!--            </if>-->
+    <!--            </where>-->
+
+
+    <!--    </select>-->
+
+    <!--   根据名字查总条数-->
+    <!--    <select id="getRouCount" resultType="int">-->
+    <!--        select count(*) from SYQ_heartbeat-->
+    <!--     </select>-->
+
+    <!--    <select id="sysXinTiaoBao" resultType="com.zz.pojo.SYQ_heartbeat">-->
+
+    <!--            select * from (select ROW_NUMBER() OVER(Order by id) as RowId,* from (SELECT B.rsnm,B.rsincd,a.* FROM  SYQ_heartbeat A LEFT JOIN  SYQ_RSV_BSIN B  on A.TENstation=B.TENstation-->
+    <!--            ) M-->
+    <!--            ) as b where b.RowId BETWEEN (#{pageCurrent}-1)*2+1 and  #{pageCurrent}*2-->
+
+    <!--    </select>-->
+</mapper>

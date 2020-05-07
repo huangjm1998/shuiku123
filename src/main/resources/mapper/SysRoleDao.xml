@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zz.dao.SysRoleDao">
+    <!--    新增角色-->
+    <insert id="insertRole" parameterType="com.zz.pojo.SYQ_role" useGeneratedKeys="true" keyProperty="id">
+        insert into SYQ_role (name,status) values(#{name},#{status})
+    </insert>
+
+    <!--    查询角色-->
+    <!--    <select id="findRoles" >-->
+
+    <!--    </select>-->
+
+</mapper>
+
+        <!--    <insert id="SysRoleDao" parameterType="com.zz.pojo.SYQ_role">-->
+        <!--        INSERT into SYQ_role (name,status) values(#{name},#{status})-->
+        <!--    </insert>-->
+
+        <!--&lt;!&ndash; 修改角色页面呈现&ndash;&gt;-->
+        <!--    <select id="findObjectById" resultMap="sysRoleMenuVo">-->
+        <!--        select id,name,status from SYQ_role;-->
+        <!--   </select>-->
+
+        <!--角色更新-->
+        <!--    <update id="updateRole" parameterType="com.zz.pojo.SYQ_role">-->
+        <!--        update SYQ_role-->
+        <!--         set-->
+        <!--           name=#{name},-->
+        <!--           status=#{status}-->
+        <!--        where id=#{id}-->
+        <!--    </update>-->
+
+
+        <!--&lt;!&ndash;        修改角色&ndash;&gt;-->
+        <!--    <update id="updateObject" parameterType="com.zz.pojo.SYQ_role">-->
+        <!--        update SYQ_role set role=#{role},role_status=#{role_status} where id=#{id}-->
+        <!--    </update>-->
+
